@@ -9,7 +9,7 @@ registered_customer = {2208847740: ["olarindeallitaiwo@gmail.com", "Alli", "Olar
 database = [new_user, registered_customer]
 
 
-def generateAccountNumber():
+def generate_account_number():
     """
     :return: The account number generated
     """
@@ -25,11 +25,11 @@ def init():
     if count == 0:
         print("Welcome to Polymath bank")
     count = 1
-    haveAccount = int(input("Do you have an account with us? Input 1 for Yes and 2 for No \n"))
+    have_account = int(input("Do you have an account with us? Input 1 for Yes and 2 for No \n"))
 
-    if haveAccount == 1:
+    if have_account == 1:
         login()
-    elif haveAccount == 2:
+    elif have_account == 2:
         register()
     else:
         print("Invalid selection!!")
@@ -39,18 +39,18 @@ def init():
 def login():
     """Log in Operations"""
     print("Login to your account")
-    accountNumberFromUser = int(input("What is your account number? \n"))
+    account_number_from_user = int(input("What is your account number? \n"))
     pin = int(input("Input your pin \n"))
     for dicts in database:
-        for accountNumber, userDetails in dicts.items():
-            if accountNumber != accountNumberFromUser | accountNumber != 2208847740:
+        for account_number, user_details in dicts.items():
+            if account_number != account_number_from_user | accountNumber != 2208847740:
                 print("Account number incorrect, please try again")
                 login()
-            if userDetails[3] != pin | userDetails[3] != 0000:
+            if user_details[3] != pin | user_details[3] != 0000:
                 print("Invalid pin")
                 login()
             else:
-                bankOperation(userDetails)
+                bank_oeration(user_details)
 
 
 def register():
@@ -69,17 +69,17 @@ def register():
         except ValueError:
             print("Pin must be an integer, please input again")
 
-    accountNumber = generateAccountNumber()
-    new_user[accountNumber] = [email, first_name, last_name, pin]
+    account_number = generate_account_number()
+    new_user[account_number] = [email, first_name, last_name, pin]
     print(new_user)
     print("Your account has been created successfully!")
     print("== ==== ===== ===== =====")
-    print("Your account number is: %d" % accountNumber)
+    print("Your account number is: %d" % account_number)
     print("== ==== ===== ===== =====")
     login()
 
 
-def bankOperation(user):
+def bank_operation(user):
     """
     Bank operation, which includes withdrawal, deposit,
     complaints, logging out and exiting the operation
@@ -91,7 +91,8 @@ def bankOperation(user):
     count = 1
 
     selected_option = int(input(
-        "What would you like to do? \ninput (1) for deposit (2) for withdrawal (3) for complaints (4) for logout (5) for exit\n"))
+        "What would you like to do? \ninput (1) for deposit (2) for withdrawal (3) for complaints (4) for logout (5) "
+        "for exit\n"))
 
     if selected_option == 1:
         deposit_operation()
@@ -125,8 +126,8 @@ def withdrawal_operation():
     """Withdrawal operation"""
     while True:
         try:
-            amountToWithdraw = int(input("How much will you like to withdraw? \n"))
-            print(f"You have successfully withdraw {amountToWithdraw}\nPlease take your cash")
+            amount_to_withdraw = int(input("How much will you like to withdraw? \n"))
+            print(f"You have successfully withdraw {amount_to_withdraw}\nPlease take your cash")
             another_transaction()
             break
         except ValueError:
@@ -137,8 +138,8 @@ def deposit_operation():
     """Deposit operation"""
     while True:
         try:
-            amountToDeposit = int(input("How much will you like to deposit? \n"))
-            print(f"You have successfully deposited {amountToDeposit} to your account")
+            amount_to_deposit = int(input("How much will you like to deposit? \n"))
+            print(f"You have successfully deposited {amount_to_deposit} to your account")
             another_transaction()
             break
         except ValueError:
@@ -149,4 +150,6 @@ def complaints():
     """Complaints"""
     issue = input("Please state your complaints \n")
     print("Thank you for contacting us, we will get back to you shortly")
+
+
 init()
