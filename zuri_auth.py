@@ -43,14 +43,14 @@ def login():
     pin = int(input("Input your pin \n"))
     for dicts in database:
         for account_number, user_details in dicts.items():
-            if account_number != account_number_from_user | accountNumber != 2208847740:
+            if account_number != account_number_from_user | account_number != 2208847740:
                 print("Account number incorrect, please try again")
                 login()
             if user_details[3] != pin | user_details[3] != 0000:
                 print("Invalid pin")
                 login()
             else:
-                bank_oeration(user_details)
+                bank_operation(user_details)
 
 
 def register():
@@ -107,7 +107,7 @@ def bank_operation(user):
         exit()
     else:
         print("Invalid option selected")
-        bankOperation(user)
+        bank_operation(user)
 
 
 def another_transaction():
